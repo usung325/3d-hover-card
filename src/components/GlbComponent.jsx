@@ -90,23 +90,71 @@ export function Model(props) {
 function Content() {
   return (
     //html content will just always have to be fixed w & h
-    <div className="flex flex-col items-center text-white bg-black w-[270px] h-[550px] gap-y-10">
-      <img src="/images/pfp.png" width={250} />
-      <div className="flex flex-col gap-y-5">
-        <p className="text-xs px-5 py-1 bg-black rounded-lg">
-          Landing Page Design & Development
-        </p>
-        <p className="text-xs px-5 py-1 bg-black rounded-lg">
-          Website Tempaltes{" "}
-          <span className="underline">(one time purchase)</span>
-        </p>
+    <>
+      <div className="w-[320px] flex flex-col items-start">
+        <div className="w-full h-[10px] rounded-t-md bg-[#D1D1D1]" />
+        <div className="flex flex-col items-start text-white bg-[#151515] w-full h-[620px] gap-y-3 px-4 py-5 rounded-b-md">
+          <div className="flex w-full justify-center">
+            <img src="/images/pfp3.png" width={290} />
+          </div>
+          <div className="flex flex-col gap-y-2 text-xs ">
+            <p className="text-xs text-[#444444] underline -mb-1">services</p>
+            <div className="flex gap-x-2 px-5 py-1 bg-black text-[#EEEEEE] rounded-lg border border-[#3d3d3d] items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={16}
+                height={16}
+                fill="none"
+              >
+                <path
+                  fill="#EEE"
+                  fillOpacity={0.933}
+                  d="M12.679 2.097h-10c-.69 0-1.25.56-1.25 1.25v6.25c0 .69.56 1.25 1.25 1.25h10c.69 0 1.25-.56 1.25-1.25v-6.25c0-.69-.56-1.25-1.25-1.25"
+                />
+                <path
+                  stroke="#EEE"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeOpacity={0.933}
+                  d="M7.679 10.847v2.5M5.179 13.347h5"
+                />
+                <path
+                  stroke="#000"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="m5.804 6.636 1.25 1.25 2.5-2.5"
+                />
+              </svg>
+              <p className="">Landing Page Design & Development</p>
+            </div>
+            <div className="flex gap-x-2 px-5 py-1 bg-black rounded-lg border border-[#3d3d3d] items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={10}
+                height={14}
+                fill="none"
+              >
+                <path
+                  fill="#EEE"
+                  d="M.304 9.192V4.817h8.75V.442H.304l8.75 8.75H4.679m-4.375 0 4.375 4.375V9.192m-4.375 0h4.375z"
+                />
+              </svg>
+              <p className="">
+                Website Tempaltes{" "}
+                <span className="underline">(one time purchase)</span>
+              </p>
+            </div>
 
-        <div className="flex text-xs text-gray-600">
-          Framer, React, Javascript, Typescript, Framer Motion, TailwindCSS,
-          ThreeJS, R3F, WebGL, GLSL
+            <p className="text-xs text-[#444444] underline -mb-1">skills</p>
+            <div className="flex text-xs text-[#747474]">
+              Framer, React, Javascript, Typescript, Framer Motion, TailwindCSS,
+              ThreeJS, R3F, WebGL, GLSL
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -159,7 +207,7 @@ function Wrapper({ portal, nodes }) {
         </Html>
       </Mask>
       <mesh position={[0, 0, 1]}>
-        <planeGeometry args={[48, 95, 100, 100]} />
+        <planeGeometry args={[55, 110, 100, 100]} />
         <meshStandardMaterial
           metalness={1.0}
           roughness={0.1}
