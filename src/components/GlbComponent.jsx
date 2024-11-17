@@ -13,7 +13,7 @@ import * as THREE from "three";
 export function Model(props) {
   const ref = useRef(null);
   const container = useRef(null);
-  const { nodes, materials } = useGLTF("/models/3dCard.glb");
+  const { nodes, materials } = useGLTF("/models/3dCard2.glb");
   const [clicked, setClicked] = useState(false);
   return (
     <>
@@ -47,7 +47,7 @@ export function Model(props) {
           <group
             {...props}
             dispose={null}
-            position={[0, 0, -2]}
+            position={[0, 0, -17]}
             scale={29}
             rotation={[0, Math.PI * 0.5, Math.PI * 0.5]}
           >
@@ -236,4 +236,4 @@ function Wrapper({ portal, nodes, clicked }) {
   );
 }
 
-useGLTF.preload("/models/3dCard.glb");
+useGLTF.preload("/models/3dCard2.glb");
