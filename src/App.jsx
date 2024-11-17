@@ -108,13 +108,11 @@ function Wrapper({ portal }) {
       <mesh position={[0, 0, 1]}>
         <planeGeometry args={[50, 100, 100, 100]} />
         <meshStandardMaterial
-          side={THREE.DoubleSide}
-          metalness={0.9}
+          metalness={1.0}
           roughness={0.1}
-          color={new THREE.Color(0x111111)}
-          envMapIntensity={1.5}
+          color={new THREE.Color(0xffffff)}
           transparent
-          opacity={0.4}
+          opacity={0.1}
         />
       </mesh>
     </group>
@@ -127,10 +125,10 @@ function Content() {
     <div className="flex flex-col items-center text-white bg-black w-[270px] h-[550px] gap-y-10">
       <img src="/images/pfp.png" width={250} />
       <div className="flex flex-col gap-y-5">
-        <p className="text-xs px-5 py-1 bg-gray-800 rounded-lg">
+        <p className="text-xs px-5 py-1 bg-black rounded-lg">
           Landing Page Design & Development
         </p>
-        <p className="text-xs px-5 py-1 bg-gray-800 rounded-lg">
+        <p className="text-xs px-5 py-1 bg-black rounded-lg">
           Website Tempaltes{" "}
           <span className="underline">(one time purchase)</span>
         </p>
