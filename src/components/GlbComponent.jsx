@@ -47,7 +47,7 @@ export function Model(props) {
           <group
             {...props}
             dispose={null}
-            position={[0, 0, -17]}
+            position={[0, 0, -16]}
             scale={29}
             rotation={[0, Math.PI * 0.5, Math.PI * 0.5]}
           >
@@ -189,7 +189,7 @@ function Wrapper({ portal, nodes, clicked }) {
     );
     state.camera.zoom = THREE.MathUtils.lerp(
       state.camera.zoom,
-      clicked ? 1.2 : 0.7,
+      clicked ? 1.5 : 1.0,
       clicked ? 0.07 : 0.1
     );
     state.camera.lookAt(0, 0, 0);
