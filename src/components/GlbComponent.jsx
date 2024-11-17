@@ -14,11 +14,20 @@ export function Model(props) {
   const ref = useRef(null);
   const container = useRef(null);
   const { nodes, materials } = useGLTF("/models/3dCard.glb");
-  // const { nodes, materials } = useGLTF("/models/tag.glb");
-  console.log(materials);
+  const [clicked, setClicked] = useState(false);
   return (
     <>
-      <div ref={container} className="w-full h-screen">
+      <div
+        ref={container}
+        className="w-full h-screen"
+        onPointerDown={() => {
+          setClicked(true);
+        }}
+        onPointerUp={() => {
+          setClicked(false);
+          console.log("clicked");
+        }}
+      >
         <div
           style={{
             position: "absolute",
@@ -32,13 +41,14 @@ export function Model(props) {
           style={{ pointerEvents: "none" }}
           eventSource={container}
           eventPrefix="page" //need this to keep coord system consistent mouse in and out of <Content/>
+          position={[0, 0, 1]}
         >
           {/* MODEL */}
-          {/* <group
+          <group
             {...props}
             dispose={null}
             position={[0, 0, -2]}
-            scale={24}
+            scale={29}
             rotation={[0, Math.PI * 0.5, Math.PI * 0.5]}
           >
             <mesh geometry={nodes.Plane.geometry}>
@@ -52,7 +62,7 @@ export function Model(props) {
                 metalness={0.9}
               />
             </mesh>
-          </group> */}
+          </group>
           {/* MODEL */}
 
           {/* <OrbitControls /> */}
@@ -80,7 +90,7 @@ export function Model(props) {
               scale={[100, 0.1, 1]}
             />
           </Environment>
-          <Wrapper portal={ref} nodes={nodes} />
+          <Wrapper portal={ref} nodes={nodes} clicked={clicked} />
         </Canvas>
       </div>
     </>
@@ -92,10 +102,10 @@ function Content() {
     //html content will just always have to be fixed w & h
     <>
       <div className="w-[320px] flex flex-col items-start">
-        <div className="w-full h-[10px] rounded-t-md bg-[#D1D1D1]" />
+        {/* <div className="w-full h-[10px] rounded-t-md bg-[#D1D1D1]" /> */}
         <div className="flex flex-col items-start text-white bg-[#151515] w-full h-[620px] gap-y-3 px-4 py-5 rounded-b-md">
           <div className="flex w-full justify-center">
-            <img src="/images/pfp3.png" width={290} />
+            <img src="/images/pfp.png" width={290} />
           </div>
           <div className="flex flex-col gap-y-2 text-xs ">
             <p className="text-xs text-[#444444] underline -mb-1">services</p>
@@ -158,7 +168,7 @@ function Content() {
   );
 }
 
-function Wrapper({ portal, nodes }) {
+function Wrapper({ portal, nodes, clicked }) {
   const meshRef = useRef(null);
   const occludeRef = useRef(null);
   const [geo, setGeo] = useState();
@@ -174,8 +184,13 @@ function Wrapper({ portal, nodes }) {
   useFrame((state) => {
     console.log(state.pointer.x * 500);
     state.camera.position.lerp(
-      new THREE.Vector3(-state.pointer.x * 100, -state.pointer.y * 50, 100),
+      new THREE.Vector3(-state.pointer.x * 100, -state.pointer.y * 50, 150),
       0.08
+    );
+    state.camera.zoom = THREE.MathUtils.lerp(
+      state.camera.zoom,
+      clicked ? 1.2 : 0.7,
+      clicked ? 0.07 : 0.1
     );
     state.camera.lookAt(0, 0, 0);
     state.camera.updateProjectionMatrix();
@@ -206,7 +221,7 @@ function Wrapper({ portal, nodes }) {
           <Content />
         </Html>
       </Mask>
-      <mesh position={[0, 0, 1]}>
+      <mesh position={[0, 0, 2]}>
         <planeGeometry args={[55, 110, 100, 100]} />
         <meshStandardMaterial
           metalness={1.0}
